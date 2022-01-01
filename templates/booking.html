@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block title %}
+Booking
+{% endblock %}
+{% block content %}
+{% load crispy_forms_tags %}
+<h1>Book a boat</h1>
+<div class="container" style="position: inherit;">
+    {% if user.is_authenticated %}
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group" style="padding: 2px 2px 2px 2px;">
+        <!--
+        <label style="padding-right:10px ;">Name<input type="text" class="form-control" value="">{{ user.username }}</label>
+        <label style="padding-right:10px ;">Email<input type="email" class="form-control" value="">{{user.email}}</label>
+        <label style="padding-right:10px ;">Phone<input type="text" class="form-control" maxlength="10"></label>
+        <label style="padding-right:10px ;">Event<br>{{form.event}}</label><br>
+        <label style="padding-right:10px ;">Booking Date<br><input type="date" class="form-control" format="yyyy-MM-dd"></label>
+        <label style="padding-right:10px ;">Booking Time<br><input type="time" class="form-control"></label><br>
+        -->
+        {{form | crispy}}
+        
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    
+</form>
+{% else %}
+<div class="alert alert-danger">
+    <strong>You are not logged in!</strong> Please login to book a boat.
+    {% endif %}
+
+</div>
+{% endblock %}
+

@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}
+Your Orders
+
+{% endblock %}
+{% block content %}
+<div class="container">
+    {% if order_list is not empty %}
+    <div class="row">
+        <div style="padding-left:350px;">
+            <h1>Your Orders</h1>
+            </div>
+        </div>
+        {% for order in order_list %}
+        <div class="col-13">
+            <div class="card">
+                <div class="card-content">
+                    <table border="3" >
+                        <thead>
+                        <tr id="result_tr" style="display: none;"><span class="card-title"><strong>Order #</strong>{{order.id}}</span></tr>
+                        <tr>
+                       <td>
+                        <strong>Name:</strong> {{order.name}}<br>
+                        <strong>Email:</strong> {{order.email}}<br>
+                        <strong>Phone:</strong> {{order.phone_no}}<br>
+                        <strong>Booking Event:</strong> {{order.event}}<br></td>
+                         <td><strong>Booking Date:</strong> {{order.booking_date}}<br></td>
+                         <td><strong>Booking Time:</strong> {{order.booking_time}}</td>
+                         <!--give a button for delete--> 
+                         <td><a href="/delete/{{order.id}}"><button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button></a></td>
+                         <!--give a button  for update-->
+                         <td><a href="/update/{{order.id}}"><button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i></button></a></td>                    
+                        </tr>
+                         </thead>
+         {% endfor %}
+                        </div>
+                    </table>
+                </div>
+            </div>
+            {% else %}
+            <div class="alert alert-danger">
+                <strong>You have not booked</strong> please book a boat!
+            </div>
+</div>
+
+{% endif %}
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "registration\base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block main %}
+<div class="card">
+<div class="card-body">
+<h4 class="card-title">Login to your account</h4>
+
+<form method="POST">
+{% csrf_token %}
+<input type="hidden" name="next" value="{{ next }}">
+        
+{{ form|crispy }}
+
+    <!--
+    <tr>
+        <td>Email</td>
+        <td><input type="email" name="email" value="{{ email }}"></td>
+    </tr>
+    <tr>
+        <td>password</td>
+        <td><input type="password" name="password" value="{{ password }}"></td>
+    </tr>
+    -->
+    <button type="submit" class="btn btn-primary  btn-block">Login</button>
+    Don't have an account? <a href="/register" target="blank"><strong>register here</strong></a>
+
+</form>
+{% csrf_token %}
+    
+</table>
+
+
+
+</div>
+</div>
+{% endblock %}
